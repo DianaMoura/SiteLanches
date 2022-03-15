@@ -1,6 +1,7 @@
 ﻿using LanhesMac.Models;
 using LanhesMac.Repositories;
 using LanhesMac.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,11 @@ namespace LanhesMac.Controllers
                 CarrinhoCompra = _carrinhoCompra,
                 CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()
             };
+
             return View(carrinhoCompraViewModel);
         }
 
-
+      
         public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
         {
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
@@ -45,8 +47,23 @@ namespace LanhesMac.Controllers
             {
                 _carrinhoCompra.AdicionarAoCarrinho(lancheSelecionado);
             }
+
             return RedirectToAction("Index");
         }
+
+       
+        public IActionResult RemoverItemDoCarrinhoCompra(int lancheId)
+        {
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+
+            if (lancheSelecionado != null)
+            {
+                _carrinhoCompra.RemoverDoCarrinho(lancheSelecionado);
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

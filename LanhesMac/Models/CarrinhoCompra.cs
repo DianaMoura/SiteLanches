@@ -6,13 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using LanhesMac.Context;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LanhesMac.Models
 {
     public class CarrinhoCompra
     {
-
-
 
         private readonly AppDbContext _context;
 
@@ -43,11 +42,13 @@ namespace LanhesMac.Models
 
             //retorna o carrinho com o contexto e o Id atribuido ou obtido
             return new CarrinhoCompra(context)
+
             {
                 CarrinhoCompraId = carrinhoId
             };
-        }
-
+        } 
+      
+   
         public void AdicionarAoCarrinho(Lanche lanche)
         {
             var carrinhoCompraItem =
@@ -71,32 +72,6 @@ namespace LanhesMac.Models
             _context.SaveChanges();
         }
 
-
-        public void AdicionarAoCarrinho(Lanche lanche, int quantidade)
-        {
-            //obttem o lanche do carrinho 
-            var carrinhoCompraItem =
-                    _context.CarrinhoCompraItens.SingleOrDefault(
-                        s => s.Lanche.LancheId == lanche.LancheId && s.CarrinhoCompraId == CarrinhoCompraId);
-
-            //se o carrinho for null cria um carrinho novo
-            if (carrinhoCompraItem == null)
-            {
-                carrinhoCompraItem = new CarrinhoCompraItem
-                {
-                    CarrinhoCompraId = CarrinhoCompraId,
-                    Lanche = lanche,
-                    Quantidade = 1
-                };
-
-                _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
-            }
-            else
-            {
-                carrinhoCompraItem.Quantidade++;
-            }
-            _context.SaveChanges();
-        }
 
         public int RemoverDoCarrinho(Lanche lanche)
         {

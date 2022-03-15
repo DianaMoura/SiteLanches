@@ -4,17 +4,17 @@
 
 @if (Model.CarrinhoCompra.CarrinhoCompraItens.Count > 0)
 { 
+    <li>
 
-<li>
     <a asp-controller="CarrinhoCompra">
-
-        <span class="glyphicon glyphicon-shopping-cart"></span>
-        <span id="cart-status">
+        <span class="glyphicon glyphicon-shopping-cart" ></span>
+        <span><img src="~/images/Captura de Tela (2867).png"/> </span>
+        <span style="color:white"> </span>
+            <span id="cart-status">
+            
             @Model.CarrinhoCompra.CarrinhoCompraItens.Count
         </span>
     </a>
-
 </li>
-
 
 }
