@@ -19,7 +19,7 @@ namespace LanhesMac.Models
         [StringLength(50)]
         public string Sobrenome { get; set; }
         [Required(ErrorMessage = "Informe o Endereco")]
-        [Display(Name = "Nome")]
+        [Display(Name = "Endereco")]
         [StringLength(100)]
         public string Endereco1{ get; set; }
         [Required(ErrorMessage = "Informe o Complemento do Endereco")]

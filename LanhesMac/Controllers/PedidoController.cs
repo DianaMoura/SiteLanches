@@ -69,7 +69,7 @@ namespace LanhesMac.Controllers
             ViewBag.DataPedido = TempData["DataPedido"];
             ViewBag.NumeroPedido = TempData["NumeroPedido"];
             ViewBag.TotalPedido = TempData["TotalPedido"];
-            ViewBag.CheckoutCompletoMensagem ="Obrigado Pelo Seu Pedido  :) ";
+            ViewBag.CheckoutCompletoMensagem =  "Obrigado Pelo Seu Pedido  :) ";
             return View();
         
         
