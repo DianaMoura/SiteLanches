@@ -23,6 +23,7 @@ namespace LanhesMac.Controllers
         }
     
        [Authorize]
+       [HttpGet]
         public IActionResult Checkout() 
         {
 
@@ -30,7 +31,7 @@ namespace LanhesMac.Controllers
         
         }
        
-        [HttpGet]
+        [HttpPost]
         [Authorize]
         public IActionResult Checkout(Pedido pedido)
         {
